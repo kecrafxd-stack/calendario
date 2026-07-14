@@ -106,11 +106,11 @@ summary:hover {
     
 
     box-shadow: var(--sombra-general);
-    background-color: red;
+    background-color: white;
     /* padding: 10px; */
 }
 .main-nav__month-link {
-    background-color: blue;
+    background-color: white;
 }
 
 /* CALENDARIO */
@@ -151,5 +151,3 @@ summary:hover {
 .event-menu {
     display: none;
 }
-
-.event-menu
