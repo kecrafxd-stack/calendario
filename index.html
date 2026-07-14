@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Pliant:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pliant:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header__container">
+            <!-- Logo -->
+            <div class="header__image-container">
+                <img src="img/logo.png" alt="Logo pedorro" class="header__logo">
+            </div>
+
+            <!-- Titulo principal -->
+            <div class="header__content">
+                <h1 class="header__title">Calendario Kenyano</h1>
+                <span class="header__description">Calendario para mierdas</span>
+            </div>
+        </div>
+
+        <!-- Navegacion -->
+        <nav class="main-nav">
+            <ul class="main-nav__list">
+                <li class="main-nav__item">
+                    <details class="main-nav__dropdown">
+                        <summary>Mes</summary>
+
+                        <ul class="main-nav__month-list">
+                            <li class="main-nav__month"><a href="index.html" class="main-nav__month-link">Enero</a></li>
+                            <li class="main-nav__month"><a href="index2.html" class="main-nav__month-link">Febrero</a>
+                            </li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Marzo</a></li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Abril</a></li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Mayo</a></li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Junio</a></li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Julio</a></li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Agosto</a></li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Septiembre</a></li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Octubre</a></li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Noviembre</a></li>
+                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Diciembre</a></li>
+                        </ul>
+                    </details>
+                    <a href="" class="main-nav__link"></a>
+                </li>
+
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <table class="calendary">
+            <!-- Encabezado del calendario -->
+            <thead class="calendary__headers">
+                <!-- Mes -->
+                <tr class="calendary__month-row">
+                    <th class="calendary__month-header" colspan="7">Enero - 2026</th>
+                </tr>
+
+                <!-- Dias -->
+                <tr class="calendary__day-row">
+                    <th class="calendary__day-header">Domingo</th>
+                    <th class="calendary__day-header">Lunes</th>
+                    <th class="calendary__day-header">Martes</th>
+                    <th class="calendary__day-header">Miercoles</th>
+                    <th class="calendary__day-header">Jueves</th>
+                    <th class="calendary__day-header">Viernes</th>
+                    <th class="calendary__day-header">Sabado</th>
+                </tr>
+            </thead>
+            <!-- FIN Encabezado del calendario -->
+
+            <!-- Cuerpo calendario (Dias en fecha) -->
+            <tbody class="calendary__body">
+                <tr class="calendary__week-row">
+                    <td class="calendary__date calendary__date--previous-month">28</td>
+                    <td class="calendary__date calendary__date--previous-month">29</td>
+                    <td class="calendary__date calendary__date--previous-month">30</td>
+                    <td class="calendary__date calendary__date--previous-month">31</td>
+                    <td class="calendary__date" data-month="enero" data-date="1">1</td>
+                    <td class="calendary__date" data-month="enero" data-date="2">2</td>
+                    <td class="calendary__date" data-month="enero" data-date="3">3</td>
+                </tr>
+                <tr class="calendary__week-row">
+                    <td class="calendary__date" data-month="enero" data-date="4">4</td>
+                    <td class="calendary__date" data-month="enero" data-date="5">5</td>
+                    <td class="calendary__date" data-month="enero" data-date="6">6</td>
+                    <td class="calendary__date" data-month="enero" data-date="7">7</td>
+                    <td class="calendary__date" data-month="enero" data-date="8">8</td>
+                    <td class="calendary__date" data-month="enero" data-date="9">9</td>
+                    <td class="calendary__date" data-month="enero" data-date="10">10</td>
+                </tr>
+
+                <tr class="calendary__week-row">
+                    <td class="calendary__date" data-month="enero" data-date="11">11</td>
+                    <td class="calendary__date" data-month="enero" data-date="12">12</td>
+                    <td class="calendary__date" data-month="enero" data-date="13">13</td>
+                    <td class="calendary__date" data-month="enero" data-date="14">14</td>
+                    <td class="calendary__date" data-month="enero" data-date="15">15</td>
+                    <td class="calendary__date" data-month="enero" data-date="16">16</td>
+                    <td class="calendary__date" data-month="enero" data-date="17">17</td>
+                </tr>
+
+                <tr class="calendary__week-row">
+                    <td class="calendary__date" data-month="enero" data-date="18">18</td>
+                    <td class="calendary__date" data-month="enero" data-date="19">19</td>
+                    <td class="calendary__date" data-month="enero" data-date="20">20</td>
+                    <td class="calendary__date" data-month="enero" data-date="21">21</td>
+                    <td class="calendary__date" data-month="enero" data-date="22">22</td>
+                    <td class="calendary__date" data-month="enero" data-date="23">23</td>
+                    <td class="calendary__date" data-month="enero" data-date="24">24</td>
+                </tr>
+
+                <tr class="calendary__week-row">
+                    <td class="calendary__date" data-month="enero" data-date="25">25</td>
+                    <td class="calendary__date" data-month="enero" data-date="26">26</td>
+                    <td class="calendary__date" data-month="enero" data-date="27">27</td>
+                    <td class="calendary__date" data-month="enero" data-date="28">28</td>
+                    <td class="calendary__date" data-month="enero" data-date="29">29</td>
+                    <td class="calendary__date" data-month="enero" data-date="30">30</td>
+                    <td class="calendary__date" data-month="enero" data-date="31">31</td>
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+        <!-- Formulario pedorro -->
+        <div class="event-menu">
+            <h2>Agregar evento</h2>
+
+            <input type="text" placeholder="Agrega un evento">
+            <input type="time" placeholder="9:00 AM - 9:00 PM">
+            <button>Guardar</button>
+        </div>
+    </main>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

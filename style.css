@@ -1,0 +1,155 @@
+:root {
+    /* Colores */
+    --color-fondo: rgb(224, 235, 255);
+    --color-month-header: rgb(140, 180, 255);
+    --color-day-header: rgb(166, 197, 255);
+    --color-date: rgb(192, 214, 255);
+    --color-date-previous-month: rgb(207, 224, 255);
+    --color-table-border: rgb(140, 180, 255) 2px solid;
+
+    /* Tamaños de fuente */
+    --font-8px: 0.5rem;
+    --font-16px: 1rem;
+    --font-24px: 1.5rem;
+    --font-32px: 2rem;
+    /* Fuente */
+    --fuente-general: "DM Serif Display", serif;
+    --fuente-generalv2: "Quicksand", sans-serif;
+    --color-fuente-principal: #000;
+    --color-fuente-previous-month: rgb(112, 143, 199);
+
+    /* Sombras */
+    --sombra-general: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: var(--fuente-generalv2);
+    letter-spacing: 1.5px;
+    background-color: var(--color-fondo);
+    color: var(--color-fuente-principal);
+}
+main {
+    width: 100vh;
+    height: 90vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    margin-top: 65px;
+}
+li {
+    list-style: none;
+}
+a {
+    font-weight: 700;
+    color: var(--color-fuente-principal);
+    text-decoration: none;
+}
+
+/* NAVBAR */
+.header {
+    display: flex;
+    width: 100%;
+    
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: var(--sombra-general);
+}
+.header__container {
+    display: flex;
+}
+.header__image-container {
+    width: 60px;
+    height: 60px;
+}
+.header__logo {
+    width: 100%;
+    height: 100%;
+}
+.main-nav {
+    display: flex;
+    justify-content: center;
+    margin-right: 100px;
+}
+
+summary:hover {
+    cursor: pointer;
+}
+
+/* Menu Desplegable Meses */
+.main-nav__dropdown {
+    position: relative;
+}
+.main-nav__month-list {
+    margin-top: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+    position: absolute;
+    z-index: 999;
+    
+
+    box-shadow: var(--sombra-general);
+    background-color: red;
+    /* padding: 10px; */
+}
+.main-nav__month-link {
+    background-color: blue;
+}
+
+/* CALENDARIO */
+.calendary {
+    border: var(--color-table-border);
+}
+.calendary__month-header {
+    width: 100px;
+    height: 40px;
+    background-color: var(--color-month-header);
+    font-size: var(--font-24px);
+    color: var(--color-date-previous-month);
+}
+.calendary__day-header {
+    background-color: var(--color-day-header);
+    width: 100px;
+    height: 40px;
+    font-size: var(--font-16px);
+}
+.calendary__date {
+    background-color: var(--color-date);
+    text-align: center;
+    width: 100px;
+    height: 80px;
+    font-size: var(--font-24px);
+    transition: 0.3s ease;
+}
+.calendary__date:hover {
+    transform: scale(1.09);
+    box-shadow: var(--sombra-general);
+}
+.calendary__date--previous-month {
+    background-color: var(--color-date-previous-month);
+    color: var(--color-fuente-previous-month);
+}
+
+/* Menu para eventos */
+.event-menu {
+    display: none;
+}
+
+.event-menu
