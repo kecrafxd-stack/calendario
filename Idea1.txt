@@ -1,0 +1,23 @@
+//HTML
+
+<span id="diasel"></span>
+<span>/</span>
+<span id="messel"></span>
+<span>/</span>
+<span id="añosel"></span>
+
+
+//JavaScript
+
+for(let i = 0; i < day.length; i++){
+    day[i].addEventListener('click',()=>{
+        menu.showModal()
+        menuday.textContent = day[i].dataset.date
+        menumonth.textContent = day[i].dataset.month
+        menuyear.textContent = day[i].dataset.year
+    })
+}
+
+closemenu.addEventListener('click', () =>{
+    menu.close();
+})

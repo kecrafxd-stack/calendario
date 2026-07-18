@@ -138,6 +138,14 @@ summary:hover {
     font-size: var(--font-24px);
     transition: 0.3s ease;
 }
+.calendary__date--previous-month{
+    background-color: var(--color-date);
+    text-align: center;
+    width: 100px;
+    height: 80px;
+    font-size: var(--font-24px);
+    transition: 0.3s ease;
+}
 .calendary__date:hover {
     transform: scale(1.09);
     box-shadow: var(--sombra-general);
@@ -149,5 +157,12 @@ summary:hover {
 
 /* Menu para eventos */
 .event-menu {
-    display: none;
+    margin: auto auto;
+}
+
+.agenda__container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+    gap: 10px;
 }

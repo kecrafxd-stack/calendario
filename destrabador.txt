@@ -1,0 +1,3 @@
+Que debo hacer?
+
+Que al momento de picar un dia, se obtenga su data-day. Ese dataday se debe utilizar para acceder al indice de la opcion del dia y ponerla como selected
