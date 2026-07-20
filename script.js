@@ -4,7 +4,10 @@ const menuday = document.querySelector('#diasel')
 const menudayselect = document.querySelector('#daysel')
 const menumonth = document.querySelector('#messel')
 const menuyear = document.querySelector('#añosel')
-const closemenu = document.querySelector("#close")
+const formulario = document.querySelector(".agenda__container")
+const btn_enviar = document.querySelector('#close')
+
+let eventos = [];
 
 
 for(let i = 0; i < day.length; i++){
@@ -15,6 +18,23 @@ for(let i = 0; i < day.length; i++){
     })
 }
 
-closemenu.addEventListener('click', () =>{
-    menu.close();
+formulario.addEventListener('submit', (form)=>{
+    form.preventDefault();
+    let evento = {
+        title: document.querySelector('#event__title').value,
+        day: document.querySelector('#daysel').value,
+        month: document.querySelector('#monthsel').value,
+        year: document.querySelector('#yearsel').value,
+        hour: document.querySelector('#time__date').value
+    }
+
+    eventos.push(evento)
+
+    for(let i = 0; i < eventos.length; i++){
+        console.log(eventos[i])
+    }
+
+    formulario.reset();
+
+    menu.close()
 })

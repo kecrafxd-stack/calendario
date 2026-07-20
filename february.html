@@ -43,17 +43,16 @@
                             </li>
                             <li class="main-nav__month"><a href="february.html" class="main-nav__month-link">Febrero</a>
                             </li>
-                            <li class="main-nav__month"><a href="index3.html" class="main-nav__month-link">Marzo</a>
-                            </li>
-                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Abril</a></li>
-                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Mayo</a></li>
-                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Junio</a></li>
-                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Julio</a></li>
-                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Agosto</a></li>
-                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Septiembre</a></li>
-                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Octubre</a></li>
-                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Noviembre</a></li>
-                            <li class="main-nav__month"><a href="" class="main-nav__month-link">Diciembre</a></li>
+                            <li class="main-nav__month"><a href="march.html" class="main-nav__month-link">Marzo</a></li>
+                            <li class="main-nav__month"><a href="april.html" class="main-nav__month-link">Abril</a></li>
+                            <li class="main-nav__month"><a href="may.html" class="main-nav__month-link">Mayo</a></li>
+                            <li class="main-nav__month"><a href="june.html" class="main-nav__month-link">Junio</a></li>
+                            <li class="main-nav__month"><a href="july.html" class="main-nav__month-link">Julio</a></li>
+                            <li class="main-nav__month"><a href="august.html" class="main-nav__month-link">Agosto</a></li>
+                            <li class="main-nav__month"><a href="september.html" class="main-nav__month-link">Septiembre</a></li>
+                            <li class="main-nav__month"><a href="october.html" class="main-nav__month-link">Octubre</a></li>
+                            <li class="main-nav__month"><a href="november.html" class="main-nav__month-link">Noviembre</a></li>
+                            <li class="main-nav__month"><a href="december.html" class="main-nav__month-link">Diciembre</a></li>
                         </ul>
                     </details>
                     <a href="" class="main-nav__link"></a>
@@ -136,16 +135,16 @@
         </table>
 
         <dialog id="menuAgenda" class="event-menu">
-            <div class="agenda__container">
+            <form class="agenda__container">
                 <legend class="agenda__title">Crear eventos</legend>
 
                 <div class="title_container">
                     <legend class="title">Titulo</legend>
-                    <input type="text" placeholder="Ingresa un titulo">
+                    <input type="text" placeholder="Ingresa un titulo" id="event__title" autocomplete="off">
                 </div>
 
                 <div class="date__container">
-                    <label for="fecha">Fecha: </label>
+                    <label for="daysel">Fecha: </label>
 
                     <select name="daysel" id="daysel">
                         <option value="31">31</option>
@@ -205,12 +204,12 @@
 
                 <div class="time_container">
                     <legend class="time_title">Hora</legend>
-                    <input type="time" value="09:00:00">
+                    <input type="time" value="09:00:00" id="time__date">
                 </div>
 
 
-                <button id="close">Aceptar</button>
-            </div>
+                <button id="close" type="submit">Aceptar</button>
+            </form>
 
         </dialog>
     </main>
