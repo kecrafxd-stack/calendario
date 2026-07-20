@@ -1,3 +1,5 @@
-Que debo hacer?
+Segun el Mes seleccionado en el 'main-nav__month-list' (El div que tiene dentro todos los meses) va a dibujar una distribucion de meses distinta.
 
-Que al momento de picar un dia, se obtenga su data-day. Ese dataday se debe utilizar para acceder al indice de la opcion del dia y ponerla como selected
+Esa es la idea sepa la bola si se pueda viva españa
+
+uwu

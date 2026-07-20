@@ -27,16 +27,18 @@
     margin: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: var(--fuente-generalv2);
     letter-spacing: 1.5px;
     background-color: var(--color-fondo);
     color: var(--color-fuente-principal);
 }
+
 main {
     width: 100vh;
     height: 90vh;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,9 +47,11 @@ main {
 
     margin-top: 65px;
 }
+
 li {
     list-style: none;
 }
+
 a {
     font-weight: 700;
     color: var(--color-fuente-principal);
@@ -58,7 +62,7 @@ a {
 .header {
     display: flex;
     width: 100%;
-    
+
     position: fixed;
     top: 0;
     z-index: 1000;
@@ -68,17 +72,21 @@ a {
     background-color: #fff;
     box-shadow: var(--sombra-general);
 }
+
 .header__container {
     display: flex;
 }
+
 .header__image-container {
     width: 60px;
     height: 60px;
 }
+
 .header__logo {
     width: 100%;
     height: 100%;
 }
+
 .main-nav {
     display: flex;
     justify-content: center;
@@ -93,30 +101,30 @@ summary:hover {
 .main-nav__dropdown {
     position: relative;
 }
+
 .main-nav__month-list {
-    margin-top: 20px;
-    
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    
+
     position: absolute;
     z-index: 999;
-    
+
+    width: 150px;
+
+    margin-top: 20px;
+    gap: 10px;
 
     box-shadow: var(--sombra-general);
     background-color: white;
     /* padding: 10px; */
-}
-.main-nav__month-link {
-    background-color: white;
 }
 
 /* CALENDARIO */
 .calendary {
     border: var(--color-table-border);
 }
+
 .calendary__month-header {
     width: 100px;
     height: 40px;
@@ -124,12 +132,14 @@ summary:hover {
     font-size: var(--font-24px);
     color: var(--color-date-previous-month);
 }
+
 .calendary__day-header {
     background-color: var(--color-day-header);
     width: 100px;
     height: 40px;
     font-size: var(--font-16px);
 }
+
 .calendary__date {
     background-color: var(--color-date);
     text-align: center;
@@ -138,7 +148,8 @@ summary:hover {
     font-size: var(--font-24px);
     transition: 0.3s ease;
 }
-.calendary__date--previous-month{
+
+.calendary__date--previous-month {
     background-color: var(--color-date);
     text-align: center;
     width: 100px;
@@ -146,10 +157,12 @@ summary:hover {
     font-size: var(--font-24px);
     transition: 0.3s ease;
 }
+
 .calendary__date:hover {
     transform: scale(1.09);
     box-shadow: var(--sombra-general);
 }
+
 .calendary__date--previous-month {
     background-color: var(--color-date-previous-month);
     color: var(--color-fuente-previous-month);
