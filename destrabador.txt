@@ -3,3 +3,5 @@ Segun el Mes seleccionado en el 'main-nav__month-list' (El div que tiene dentro 
 Esa es la idea sepa la bola si se pueda viva españa
 
 uwu
+
+ayuda es un desvergue
