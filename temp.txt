@@ -1,0 +1,35 @@
+//Cuestion de los dias
+// for (let i = 0; i < month_Cheked.length; i++) {
+//     if (month_Cheked[i].checked == true) {
+//         for (let i = months[0].starts; i < months[0].days; i++) {
+//             table_data[i].textContent = counter
+//             counter += 1
+//         }
+
+//     }
+// }
+//Solo para ver el mes que esta seleccionado
+for (let i = 0; i < month_Cheked.length; i++) {
+    month_Cheked[i].addEventListener('click', () => {
+        counter = 1;
+        console.log(month_Cheked[i].id)
+        let index_month = month_Cheked[i].value;
+
+
+        for (let i = 0; i < month_Cheked.length; i++) {
+            if (month_Cheked[i].checked == true) {
+                for (let i = months[index_month].starts; i < months[index_month].days; i++) {
+                    table_data[i].textContent = counter
+                    counter += 1
+                }
+
+            }
+        }
+    })
+}
+
+// Dibujar Enero por ahora
+
+
+
+

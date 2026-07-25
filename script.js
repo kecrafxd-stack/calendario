@@ -1,54 +1,59 @@
 import { months } from "./data_months.js";
+let hardware_date = new Date();
+
+// Elementos del calendario
 const day = document.querySelectorAll(".calendary__date");
-const menu = document.querySelector("#menuAgenda")
-const menuday = document.querySelector('#diasel')
-const menudayselect = document.querySelector('#daysel')
-const menumonth = document.querySelector('#messel')
-const menuyear = document.querySelector('#añosel')
-const formulario = document.querySelector(".agenda__container")
-const btn_enviar = document.querySelector('#close')
-const monthList = document.querySelector('.main-nav__month-list')
-const month_Cheked = monthList.getElementsByTagName('input')
+const tbody = document.querySelector(".calendary__body");
+const table_data = tbody.getElementsByTagName("td");
 
-const tbody = document.querySelector('.calendary__body');
-const table_data = tbody.getElementsByTagName('td')
+// Menú de agenda
+const menu = document.querySelector("#menuAgenda");
+const formulario = document.querySelector(".agenda__container");
+const btn_enviar = document.querySelector("#close");
 
-let counter = 1
+// Inputs de fecha del formulario
+const menuday = document.querySelector("#diasel");
+const menudayselect = document.querySelector("#daysel");
+const menumonth = document.querySelector("#messel");
+const menuyear = document.querySelector("#añosel");
+
+// Selector de meses
+const monthList = document.querySelector(".main-nav__month-list");
+const month_Cheked = monthList.getElementsByTagName("input");
+
+// Datos
+let eventos = [];
+let mes_seleccionado = hardware_date.getMonth()
+
+//Seleccionar Mes segun la fecha del PC
+for (let i = 0; i < month_Cheked.length; i++) {
+    if (month_Cheked[i].value == mes_seleccionado) {
+        month_Cheked[i].checked = true
+    }
+}
 
 console.log(table_data)
-let eventos = [];
 
-//Cuestion de los dias
-// for (let i = 0; i < month_Cheked.length; i++) {
-//     if (month_Cheked[i].checked == true) {
-//         for (let i = months[0].starts; i < months[0].days; i++) {
-//             table_data[i].textContent = counter
-//             counter += 1
-//         }
-
-//     }
-// }
-//Solo para ver el mes que esta seleccionado
 for (let i = 0; i < month_Cheked.length; i++) {
-    month_Cheked[i].addEventListener('click', () => {
-        counter = 1;
-        console.log(month_Cheked[i].id)
-        let index_month = month_Cheked[i].value;
+    month_Cheked[i].addEventListener('input', () => {
+        if (month_Cheked[i].checked == true) {
+            mes_seleccionado = month_Cheked[i].value;
 
+            for(let i = 0; i<table_data.length; i++){
+                table_data[i].textContent = " "
+            }
 
-        for (let i = 0; i < month_Cheked.length; i++) {
-            if (month_Cheked[i].checked == true) {
-                for (let i = months[index_month].starts; i < months[index_month].days; i++) {
-                    table_data[i].textContent = counter
-                    counter += 1
-                }
+            console.log("Indice de mes seleccionado: " + mes_seleccionado)
 
+            let contador = 1;
+            for (let i = months[mes_seleccionado].start_position; i < months[mes_seleccionado].days; i++) {
+
+                table_data[i].textContent = contador;
+                contador += 1;
             }
         }
     })
 }
-
-// Dibujar Enero por ahora
 
 
 

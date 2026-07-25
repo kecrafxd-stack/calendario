@@ -1,7 +1,1 @@
-Segun el Mes seleccionado en el 'main-nav__month-list' (El div que tiene dentro todos los meses) va a dibujar una distribucion de meses distinta.
-
-Esa es la idea sepa la bola si se pueda viva españa
-
-uwu
-
-ayuda es un desvergue
+E we a agosto y a mayo les faltan dias no mames
