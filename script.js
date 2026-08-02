@@ -24,6 +24,13 @@ const month_Cheked = monthList.getElementsByTagName("input");
 // Datos
 let eventos = [];
 let mes_seleccionado = hardware_date.getMonth()
+function mostrarmodal(index) {
+    menu.showModal()
+    menudayselect[(menudayselect.length) - index].selected = true;
+}
+
+let addel = []
+
 
 //Seleccionar Mes segun la fecha del PC
 for (let i = 0; i < month_Cheked.length; i++) {
@@ -39,9 +46,11 @@ for (let i = 0; i < month_Cheked.length; i++) {
         if (month_Cheked[i].checked == true) {
             mes_seleccionado = month_Cheked[i].value;
 
-            for(let i = 0; i<table_data.length; i++){
+            for (let i = 0; i < table_data.length; i++) {
                 table_data[i].textContent = " "
+                day[i].removeEventListener("click", addel[i])
             }
+
 
             console.log("Indice de mes seleccionado: " + mes_seleccionado)
 
@@ -50,6 +59,13 @@ for (let i = 0; i < month_Cheked.length; i++) {
 
                 table_data[i].textContent = contador;
                 contador += 1;
+                
+                let index = i - months[mes_seleccionado].start_position + 1;
+
+                addel[i] = ( )=> {
+                    mostrarmodal(index)
+                }
+                day[i].addEventListener('click', addel[i]) 
             }
         }
     })
@@ -57,16 +73,6 @@ for (let i = 0; i < month_Cheked.length; i++) {
 
 
 
-
-
-//Segun el dia clickeado selecciona el dia automaticamente al momento de crear un evento
-for (let i = 0; i < day.length; i++) {
-    day[i].addEventListener('click', () => {
-        menu.showModal()
-        // console.log(menudayselect[(menudayselect.length) - i -1]) //No es buena practica PARA NADA; pero sirve :3
-        menudayselect[(menudayselect.length) - i - 1].selected = true;
-    })
-}
 
 //El formulario es enviado y dentro de un array se crea un evento
 formulario.addEventListener('submit', (form) => {
