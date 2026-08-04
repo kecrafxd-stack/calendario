@@ -156,6 +156,7 @@ summary:hover {
     height: 80px;
     font-size: var(--font-24px);
     transition: 0.3s ease;
+    pointer-events: none;
 }
 
 .calendary__date:hover {

@@ -24,7 +24,7 @@ const month_Cheked = monthList.getElementsByTagName("input");
 
 // Datos
 let eventos = [];
-let mes_seleccionado = hardware_date.getMonth()
+let mes_seleccionado = 6;
 function mostrarmodal(index) {
     menu.showModal()
     menudayselect[(menudayselect.length) - index].selected = true;
@@ -40,8 +40,9 @@ for (let i = 0; i < month_Cheked.length; i++) {
     }
 }
 
-
-console.log(table_data)
+for (let i = 0; i < table_data.length; i++) {
+    table_data[i].textContent = "";
+}
 
 for (let i = 0; i < month_Cheked.length; i++) {
     month_Cheked[i].addEventListener('input', () => {
@@ -51,7 +52,7 @@ for (let i = 0; i < month_Cheked.length; i++) {
             for (let i = 0; i < table_data.length; i++) {
                 table_data[i].textContent = "";
                 day[i].removeEventListener("click", addel[i])
-                day[i].style.backgroundColor = "rgb(192, 214, 255)"
+                day[i].classList.remove('calendary__date--previous-month')
             }
 
 
@@ -61,8 +62,9 @@ for (let i = 0; i < month_Cheked.length; i++) {
             let contador = 1;
             for (let i = months[mes_seleccionado].start_position; i < months[mes_seleccionado].days; i++) {
 
-                table_data[i].textContent = contador;
-                contador += 1;
+                table_data[i].textContent = contador.toString();
+                parseInt(contador);
+                contador += 1
 
                 let index = i - months[mes_seleccionado].start_position + 1;
 
@@ -72,12 +74,12 @@ for (let i = 0; i < month_Cheked.length; i++) {
                 day[i].addEventListener('click', addel[i])
             }
             // Linea que no se como arreglar
-                for (let i = 0; i < day.length; i++) {
-                    if (day[i].textContent == "") {
-                        day[i].style.backgroundColor = "rgb(144, 168, 212)"
-                    }
-
+            for (let i = 0; i < day.length; i++) {
+                if (day[i].textContent == "") {
+                    day[i].classList.add('calendary__date--previous-month')
                 }
+
+            }
         }
     })
 }
@@ -85,11 +87,19 @@ for (let i = 0; i < month_Cheked.length; i++) {
 //Solo cuando se carga la Pagina
 calendary_header.textContent = months[mes_seleccionado].name + ' - ' + months[mes_seleccionado].data_year
 
-let contador = 1;
+for (let i = 0; i < table_data.length; i++) {
+    table_data[i].textContent = "";
+    day[i].removeEventListener("click", addel[i])
+    day[i].classList.remove('calendary__date--previous-month')
+}
+
+
+let counter = 1;
 for (let i = months[mes_seleccionado].start_position; i < months[mes_seleccionado].days; i++) {
 
-    table_data[i].textContent = contador;
-    contador += 1;
+
+    table_data[i].textContent = counter;
+    counter += 1;
 
     let index = i - months[mes_seleccionado].start_position + 1;
 
@@ -100,6 +110,15 @@ for (let i = months[mes_seleccionado].start_position; i < months[mes_seleccionad
 
 
 }
+
+for (let i = 0; i < day.length; i++) {
+    console.log("Fix" + day[i].textContent)
+    if (day[i].textContent === "") {
+        day[i].classList.add('calendary__date--previous-month')
+    }
+
+}
+
 
 console.log("[" + day[i].textContent + "]");
 
