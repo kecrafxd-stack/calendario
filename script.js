@@ -5,7 +5,8 @@ let hardware_date = new Date();
 const calendary_header = document.querySelector('.calendary__month-header')
 const day = document.querySelectorAll(".calendary__date");
 const tbody = document.querySelector(".calendary__body");
-const table_data = tbody.getElementsByTagName("td");
+const table_data = tbody.querySelectorAll("td");
+const table_rows = tbody.querySelectorAll('tr')
 
 // Menú de agenda
 const menu = document.querySelector("#menuAgenda");
@@ -24,7 +25,7 @@ const month_Cheked = monthList.getElementsByTagName("input");
 
 // Datos
 let eventos = [];
-let mes_seleccionado = 6;
+let mes_seleccionado = hardware_date.getMonth();
 function mostrarmodal(index) {
     menu.showModal()
     menudayselect[(menudayselect.length) - index].selected = true;
@@ -49,21 +50,54 @@ for (let i = 0; i < month_Cheked.length; i++) {
         if (month_Cheked[i].checked == true) {
             mes_seleccionado = month_Cheked[i].value;
 
+            //Limpieza para cada dia
             for (let i = 0; i < table_data.length; i++) {
                 table_data[i].textContent = "";
                 day[i].removeEventListener("click", addel[i])
                 day[i].classList.remove('calendary__date--previous-month')
             }
 
+            //Ayuda no esya furulando
+            for (let i = 0; i < table_rows.length; i++) {
+                if (table_rows[i].classList.contains('fw')) {
+                    table_rows[i].remove()
+                }
+            }
 
+            //Un comprobador
             console.log("Indice de mes seleccionado: " + mes_seleccionado)
 
+            //Escribir el Nombre del mes seleccionado
             calendary_header.textContent = months[mes_seleccionado].name + ' - ' + months[mes_seleccionado].data_year
+
+            //Empezar a dibujar
+
+            //Si el mes inicia desde el indice 5 en adelante creara una nueva semana
+            if (months[mes_seleccionado].start_position >= 5) {
+                //fw is from 'five week
+                const fw = document.createElement('tr')
+                fw.classList.add('calendary__week-row')
+                fw.classList.add('fw')
+
+                for (let i = 0; i < 7; i++) {
+                    const fw_day = document.createElement('td')
+                    fw_day.classList.add('calendary__date')
+                    fw_day.classList.add('fw_day')
+                    fw_day.textContent = "";
+
+                    fw.appendChild(fw_day)
+                }
+
+                //Meter el five week en html
+                tbody.appendChild(fw);
+
+
+
+            }
             let contador = 1;
             for (let i = months[mes_seleccionado].start_position; i < months[mes_seleccionado].days; i++) {
 
-                table_data[i].textContent = contador.toString();
-                parseInt(contador);
+                table_data[i].textContent = contador
                 contador += 1
 
                 let index = i - months[mes_seleccionado].start_position + 1;
@@ -73,7 +107,7 @@ for (let i = 0; i < month_Cheked.length; i++) {
                 }
                 day[i].addEventListener('click', addel[i])
             }
-            // Linea que no se como arreglar
+
             for (let i = 0; i < day.length; i++) {
                 if (day[i].textContent == "") {
                     day[i].classList.add('calendary__date--previous-month')
@@ -117,10 +151,9 @@ for (let i = 0; i < day.length; i++) {
         day[i].classList.add('calendary__date--previous-month')
     }
 
+    console.log("[" + day[i].textContent + "]");
 }
 
-
-console.log("[" + day[i].textContent + "]");
 
 
 

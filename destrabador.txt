@@ -1,1 +1,9 @@
 E we a agosto y a mayo les faltan dias no mames
+
+Cual es el problema?
+Mayo y agosto contienen 5 semanas. La tabla esta hecha para unicamente 4 semanas en todos los meses por lo que se genera un quiebre
+Revisando data_months.js vi que aquellos meses que empiezan por el quinto indice en adelante generan la necesidad de una semana mas 
+Por lo que habra que implementar una solucion
+
+Idea de solucion:
+Revisar si el indice de inicio del mes es mayor o igual a 5. Si si, insertar en el html un nuevo tr con 7 td nuevos. 
