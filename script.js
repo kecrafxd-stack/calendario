@@ -3,10 +3,10 @@ let hardware_date = new Date();
 
 // Elementos del calendario
 const calendary_header = document.querySelector('.calendary__month-header')
-const day = document.querySelectorAll(".calendary__date");
+let day = document.querySelectorAll(".calendary__date");
 const tbody = document.querySelector(".calendary__body");
-const table_data = tbody.querySelectorAll("td");
-const table_rows = tbody.querySelectorAll('tr')
+let table_data = tbody.querySelectorAll("td");
+let  table_rows = tbody.querySelectorAll('tr')
 
 // Menú de agenda
 const menu = document.querySelector("#menuAgenda");
@@ -50,6 +50,8 @@ for (let i = 0; i < month_Cheked.length; i++) {
         if (month_Cheked[i].checked == true) {
             mes_seleccionado = month_Cheked[i].value;
 
+            
+
             //Limpieza para cada dia
             for (let i = 0; i < table_data.length; i++) {
                 table_data[i].textContent = "";
@@ -57,7 +59,7 @@ for (let i = 0; i < month_Cheked.length; i++) {
                 day[i].classList.remove('calendary__date--previous-month')
             }
 
-            //Ayuda no esya furulando
+
             for (let i = 0; i < table_rows.length; i++) {
                 if (table_rows[i].classList.contains('fw')) {
                     table_rows[i].remove()
@@ -90,6 +92,11 @@ for (let i = 0; i < month_Cheked.length; i++) {
 
                 //Meter el five week en html
                 tbody.appendChild(fw);
+
+                //Creo que tiene sentido, cada vez se actualizan
+            day = document.querySelectorAll(".calendary__date");
+            table_data = tbody.querySelectorAll("td");
+            table_rows = tbody.querySelectorAll('tr')
 
 
 
@@ -127,6 +134,29 @@ for (let i = 0; i < table_data.length; i++) {
     day[i].classList.remove('calendary__date--previous-month')
 }
 
+if (months[mes_seleccionado].start_position >= 5) {
+                //fw is from 'five week
+                const fw = document.createElement('tr')
+                fw.classList.add('calendary__week-row')
+                fw.classList.add('fw')
+
+                for (let i = 0; i < 7; i++) {
+                    const fw_day = document.createElement('td')
+                    fw_day.classList.add('calendary__date')
+                    fw_day.classList.add('fw_day')
+                    fw_day.textContent = "";
+
+                    fw.appendChild(fw_day)
+                }
+
+                //Meter el five week en html
+                tbody.appendChild(fw);
+
+                //Creo que tiene sentido, cada vez se actualizan
+            day = document.querySelectorAll(".calendary__date");
+            table_data = tbody.querySelectorAll("td");
+            table_rows = tbody.querySelectorAll('tr')
+}
 
 let counter = 1;
 for (let i = months[mes_seleccionado].start_position; i < months[mes_seleccionado].days; i++) {
