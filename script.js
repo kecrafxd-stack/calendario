@@ -32,6 +32,72 @@ let eventos = [];
 let mes_seleccionado = hardware_date.getMonth();
 let year_seleccionado = hardware_date.getFullYear();
 
+//Funciones
+function draw_day() {
+  let contador = 1;
+  for (let i = months[0][year_seleccionado][mes_seleccionado].start_position; i < months[0][year_seleccionado][mes_seleccionado].days; i++) {
+
+    table_data[i].textContent = contador
+    contador += 1
+
+    let index = i - months[0][year_seleccionado][mes_seleccionado].start_position + 1;
+
+    addel[i] = () => {
+      mostrarmodal(index)
+    }
+    day[i].addEventListener('click', addel[i])
+  }
+}
+function fw() {
+  if (months[0][year_seleccionado][mes_seleccionado].start_position >= 5) {
+    //fw its from 'five week'
+    const fw = document.createElement('tr')
+    fw.classList.add('calendary__week-row')
+    fw.classList.add('fw')
+
+    for (let i = 0; i < 7; i++) {
+      const fw_day = document.createElement('td')
+      fw_day.classList.add('calendary__date')
+      fw_day.classList.add('fw_day')
+      fw_day.textContent = "";
+
+      fw.appendChild(fw_day)
+    }
+
+    //Meter el five week en html
+    tbody.appendChild(fw);
+
+    //Creo que tiene sentido, cada vez se actualizan
+    day = document.querySelectorAll(".calendary__date");
+    table_data = tbody.querySelectorAll("td");
+    table_rows = tbody.querySelectorAll('tr')
+  }
+}
+
+function clean() {
+  //Limpieza para cada dia
+  for (let i = 0; i < table_data.length; i++) {
+    table_data[i].textContent = "";
+    day[i].removeEventListener("click", addel[i])
+    day[i].classList.remove('calendary__date--previous-month')
+  }
+
+  //Limpeza de fw en caso de que exista
+  for (let i = 0; i < table_rows.length; i++) {
+    if (table_rows[i].classList.contains('fw')) {
+      table_rows[i].remove()
+    }
+  }
+}
+
+function previous_month() {
+  for (let i = 0; i < day.length; i++) {
+    if (day[i].textContent == "") {
+      day[i].classList.add('calendary__date--previous-month')
+    }
+  }
+}
+
 // Debugsitos
 console.log(months[0][year_seleccionado][mes_seleccionado].name)
 
@@ -41,31 +107,32 @@ function mostrarmodal(index) {
   menumonth[(menumonth.length) - mes_seleccionado - 1].selected = true;
 }
 
+function seleccionarMMYYxFecha(MMYY, MMSYYS) {
+  for (let i = 0; i < MMYY.length; i++) {
+    if (MMYY[i].value == MMSYYS) {
+      MMYY[i].checked = true
+    }
+  }
+}
+
 let addel = []
 
 
 //Seleccionar Mes segun la fecha del PC
-for (let i = 0; i < month_Cheked.length; i++) {
-  if (month_Cheked[i].value == mes_seleccionado) {
-    month_Cheked[i].checked = true
-  }
-}
+seleccionarMMYYxFecha(month_Cheked, mes_seleccionado)
 
 //Seleccionar anio segun fecha del PC
-for (let i = 0; i < year_Cheked.length; i++) {
-  if (year_Cheked[i].value == year_seleccionado - 2026) {
-    year_Cheked[i].checked = true
-  }
-}
+seleccionarMMYYxFecha(year_Cheked, year_seleccionado)
 
 //Preparacion: Dejar todos vacios
 for (let i = 0; i < table_data.length; i++) {
   table_data[i].textContent = "";
 }
 
+//Lo que hace al cambiar el año
 for (let i = 0; i < year_Cheked.length; i++) {
   year_Cheked[i].addEventListener('input', () => {
-    mes_seleccionado = month_Cheked[i].value;
+
 
     for (let i = 0; i < year_Cheked.length; i++) {
       if (year_Cheked[i].checked == true) {
@@ -75,18 +142,7 @@ for (let i = 0; i < year_Cheked.length; i++) {
     }
 
     //Limpieza para cada dia
-    for (let i = 0; i < table_data.length; i++) {
-      table_data[i].textContent = "";
-      day[i].removeEventListener("click", addel[i])
-      day[i].classList.remove('calendary__date--previous-month')
-    }
-
-    //Limpeza de fw en caso de que exista
-    for (let i = 0; i < table_rows.length; i++) {
-      if (table_rows[i].classList.contains('fw')) {
-        table_rows[i].remove()
-      }
-    }
+    clean()
 
     //Escribir el Nombre del mes seleccionado
     calendary_header.textContent = months[0][year_seleccionado][mes_seleccionado].name + ' - ' + months[0][year_seleccionado][mes_seleccionado].data_year
@@ -94,52 +150,11 @@ for (let i = 0; i < year_Cheked.length; i++) {
     //Empezar a dibujar
 
     //Si el mes inicia desde el indice 5 en adelante creara una nueva semana
-    if (months[0][year_seleccionado][mes_seleccionado].start_position >= 5) {
-      //fw is from 'five week
-      const fw = document.createElement('tr')
-      fw.classList.add('calendary__week-row')
-      fw.classList.add('fw')
+    fw()
 
-      for (let i = 0; i < 7; i++) {
-        const fw_day = document.createElement('td')
-        fw_day.classList.add('calendary__date')
-        fw_day.classList.add('fw_day')
-        fw_day.textContent = "";
+    draw_day()
 
-        fw.appendChild(fw_day)
-      }
-
-      //Meter el five week en html
-      tbody.appendChild(fw);
-
-      //Creo que tiene sentido, cada vez se actualizan
-      day = document.querySelectorAll(".calendary__date");
-      table_data = tbody.querySelectorAll("td");
-      table_rows = tbody.querySelectorAll('tr')
-
-
-
-    }
-    let contador = 1;
-    for (let i = months[0][year_seleccionado][mes_seleccionado].start_position; i < months[0][year_seleccionado][mes_seleccionado].days; i++) {
-
-      table_data[i].textContent = contador
-      contador += 1
-
-      let index = i - months[0][year_seleccionado][mes_seleccionado].start_position + 1;
-
-      addel[i] = () => {
-        mostrarmodal(index)
-      }
-      day[i].addEventListener('click', addel[i])
-    }
-
-    for (let i = 0; i < day.length; i++) {
-      if (day[i].textContent == "") {
-        day[i].classList.add('calendary__date--previous-month')
-      }
-
-    }
+    previous_month()
   })
 }
 
@@ -157,18 +172,7 @@ for (let i = 0; i < month_Cheked.length; i++) {
       }
 
       //Limpieza para cada dia
-      for (let i = 0; i < table_data.length; i++) {
-        table_data[i].textContent = "";
-        day[i].removeEventListener("click", addel[i])
-        day[i].classList.remove('calendary__date--previous-month')
-      }
-
-      //Limpeza de fw en caso de que exista
-      for (let i = 0; i < table_rows.length; i++) {
-        if (table_rows[i].classList.contains('fw')) {
-          table_rows[i].remove()
-        }
-      }
+      clean()
 
       //Escribir el Nombre del mes seleccionado
       calendary_header.textContent = months[0][year_seleccionado][mes_seleccionado].name + ' - ' + months[0][year_seleccionado][mes_seleccionado].data_year
@@ -176,52 +180,11 @@ for (let i = 0; i < month_Cheked.length; i++) {
       //Empezar a dibujar
 
       //Si el mes inicia desde el indice 5 en adelante creara una nueva semana
-      if (months[0][year_seleccionado][mes_seleccionado].start_position >= 5) {
-        //fw is from 'five week
-        const fw = document.createElement('tr')
-        fw.classList.add('calendary__week-row')
-        fw.classList.add('fw')
+      fw()
 
-        for (let i = 0; i < 7; i++) {
-          const fw_day = document.createElement('td')
-          fw_day.classList.add('calendary__date')
-          fw_day.classList.add('fw_day')
-          fw_day.textContent = "";
+      draw_day()
 
-          fw.appendChild(fw_day)
-        }
-
-        //Meter el five week en html
-        tbody.appendChild(fw);
-
-        //Creo que tiene sentido, cada vez se actualizan
-        day = document.querySelectorAll(".calendary__date");
-        table_data = tbody.querySelectorAll("td");
-        table_rows = tbody.querySelectorAll('tr')
-
-
-
-      }
-      let contador = 1;
-      for (let i = months[0][year_seleccionado][mes_seleccionado].start_position; i < months[0][year_seleccionado][mes_seleccionado].days; i++) {
-
-        table_data[i].textContent = contador
-        contador += 1
-
-        let index = i - months[0][year_seleccionado][mes_seleccionado].start_position + 1;
-
-        addel[i] = () => {
-          mostrarmodal(index)
-        }
-        day[i].addEventListener('click', addel[i])
-      }
-
-      for (let i = 0; i < day.length; i++) {
-        if (day[i].textContent == "") {
-          day[i].classList.add('calendary__date--previous-month')
-        }
-
-      }
+      previous_month()
     }
   })
 }
@@ -229,59 +192,12 @@ for (let i = 0; i < month_Cheked.length; i++) {
 //Solo cuando se carga la Pagina
 calendary_header.textContent = months[0][year_seleccionado][mes_seleccionado].name + ' - ' + months[0][year_seleccionado][mes_seleccionado].data_year
 
-for (let i = 0; i < table_data.length; i++) {
-  table_data[i].textContent = "";
-  day[i].removeEventListener("click", addel[i])
-  day[i].classList.remove('calendary__date--previous-month')
-}
+fw()
 
-if (months[0][year_seleccionado][mes_seleccionado].start_position >= 5) {
-  //fw is from 'five week
-  const fw = document.createElement('tr')
-  fw.classList.add('calendary__week-row')
-  fw.classList.add('fw')
-
-  for (let i = 0; i < 7; i++) {
-    const fw_day = document.createElement('td')
-    fw_day.classList.add('calendary__date')
-    fw_day.classList.add('fw_day')
-    fw_day.textContent = "";
-
-    fw.appendChild(fw_day)
-  }
-
-  //Meter el five week en html
-  tbody.appendChild(fw);
-
-  //Creo que tiene sentido, cada vez se actualizan
-  day = document.querySelectorAll(".calendary__date");
-  table_data = tbody.querySelectorAll("td");
-  table_rows = tbody.querySelectorAll('tr')
-}
-
-let counter = 1;
-for (let i = months[0][year_seleccionado][mes_seleccionado].start_position; i < months[0][year_seleccionado][mes_seleccionado].days; i++) {
-
-
-  table_data[i].textContent = counter;
-  counter += 1;
-
-  let index = i - months[0][year_seleccionado][mes_seleccionado].start_position + 1;
-
-  addel[i] = () => {
-    mostrarmodal(index)
-  }
-  day[i].addEventListener('click', addel[i])
-
-
-}
+draw_day()
 
 //Asigna previous month en la primera carga
-for (let i = 0; i < day.length; i++) {
-  if (day[i].textContent === "") {
-    day[i].classList.add('calendary__date--previous-month')
-  }
-}
+previous_month()
 
 
 
