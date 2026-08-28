@@ -17,7 +17,7 @@ const btn_enviar = document.querySelector("#close");
 const menuday = document.querySelector("#diasel");
 const menudayselect = document.querySelector("#daysel");
 const menumonth = document.querySelector("#monthsel");
-const menuyear = document.querySelector("#añosel");
+const menuyear = document.querySelector("#yearsel");
 
 // Selector de meses
 const monthList = document.querySelector(".main-nav__month-list");
@@ -28,7 +28,6 @@ const yearList = document.querySelector(".main-nav__year-list");
 const year_Cheked = yearList.getElementsByTagName("input");
 
 // Datos
-let eventos = [];
 let mes_seleccionado = hardware_date.getMonth();
 let year_seleccionado = hardware_date.getFullYear();
 
@@ -48,6 +47,7 @@ function draw_day() {
     day[i].addEventListener('click', addel[i])
   }
 }
+
 function fw() {
   if (months[0][year_seleccionado][mes_seleccionado].start_position >= 5) {
     //fw its from 'five week'
@@ -98,13 +98,11 @@ function previous_month() {
   }
 }
 
-// Debugsitos
-console.log(months[0][year_seleccionado][mes_seleccionado].name)
-
 function mostrarmodal(index) {
   menu.showModal()
   menudayselect[(menudayselect.length) - index].selected = true;
   menumonth[(menumonth.length) - mes_seleccionado - 1].selected = true;
+  menuyear[(menuyear.length) - year_seleccionado + 2026 - 1].selected = true;
 }
 
 function seleccionarMMYYxFecha(MMYY, MMSYYS) {
@@ -137,7 +135,6 @@ for (let i = 0; i < year_Cheked.length; i++) {
     for (let i = 0; i < year_Cheked.length; i++) {
       if (year_Cheked[i].checked == true) {
         year_seleccionado = year_Cheked[i].value
-        console.log(year_Cheked)
       }
     }
 
@@ -164,12 +161,11 @@ for (let i = 0; i < month_Cheked.length; i++) {
     if (month_Cheked[i].checked == true) {
       mes_seleccionado = month_Cheked[i].value;
 
-      for (let i = 0; i < year_Cheked.length; i++) {
-        if (year_Cheked[i].checked == true) {
-          year_seleccionado = year_Cheked[i].value
-          console.log(year_Cheked)
-        }
-      }
+      // for (let i = 0; i < year_Cheked.length; i++) {
+      //   if (year_Cheked[i].checked == true) {
+      //     year_seleccionado = year_Cheked[i].value
+      //   }
+      // }
 
       //Limpieza para cada dia
       clean()
@@ -213,12 +209,7 @@ formulario.addEventListener('submit', (form) => {
     hour: document.querySelector('#time__date').value
   }
 
-  eventos.push(evento)
-
-  //Usado como debug imprime los eventos existentes en el array 'eventos'
-  for (let i = 0; i < eventos.length; i++) {
-    console.log(eventos[i])
-  }
+  localStorage.setItem(`event${localStorage.length}`, JSON.stringify(evento))
 
   //Resetea el formulario al terminar de crear el evento
   formulario.reset();
