@@ -8,7 +8,7 @@
     --color-table-border: rgb(140, 180, 255) 2px solid;
 
     /* Tamaños de fuente */
-    --font-8px: 0.5rem;
+    --font-8px: 0.90rem;
     --font-16px: 1rem;
     --font-24px: 1.5rem;
     --font-32px: 2rem;
@@ -36,11 +36,11 @@ body {
 }
 
 main {
-    width: 100vh;
+    width: 100vw;
     height: 90vh;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
@@ -139,13 +139,86 @@ summary:hover {
 }
 
 /* CALENDARIO */
+
 .calendary {
     border: var(--color-table-border);
 }
 
+.calendary__container{
+    display: flex;
+        flex: 6;
+        justify-content: center;
+}
+
+/* Window Events */
+.windowEvents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 2;
+    background-color: white;
+    margin: 0px 40px;
+    border-radius: 20px;
+}
+
+.windowEvents__header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-day-header);
+    width: 100%;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.windowEvents__main{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.windowEvents__event{
+    display: grid;
+    grid-template-areas: 
+    "titulo titulo fecha"
+    "titulo titulo hora";
+    width: 90%;
+    background-color: var(--color-fondo);
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.asdf{
+    width: 100vw;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.windowEvents__eventTitle{
+    font-size: var(--font-8px);
+    grid-area: titulo;
+}
+
+.windowEvents__eventFecha{
+    grid-area: fecha;
+}
+
+.windowEvents__eventHora{
+    grid-area: hora;
+}
+
+
+
+
+
+
+
+
+
 .calendary__month-header {
-    width: 100px;
-    height: 40px;
+    width: 80px;
+    height: 35px;
     background-color: var(--color-month-header);
     font-size: var(--font-24px);
     color: var(--color-date-previous-month);
@@ -153,16 +226,16 @@ summary:hover {
 
 .calendary__day-header {
     background-color: var(--color-day-header);
-    width: 100px;
-    height: 40px;
+    width: 80px;
+    height: 35px;
     font-size: var(--font-16px);
 }
 
 .calendary__date {
     background-color: var(--color-date);
     text-align: center;
-    width: 100px;
-    height: 80px;
+    width: 80px;
+    height: 75px;
     font-size: var(--font-24px);
     transition: 0.3s ease;
 }
@@ -170,8 +243,8 @@ summary:hover {
 .calendary__date--previous-month {
     background-color: var(--color-date);
     text-align: center;
-    width: 100px;
-    height: 80px;
+    width: 80px;
+    height: 75px;
     font-size: var(--font-24px);
     transition: 0.3s ease;
     pointer-events: none;
@@ -198,3 +271,4 @@ summary:hover {
     padding: 20px 10px;
     gap: 10px;
 }
+
