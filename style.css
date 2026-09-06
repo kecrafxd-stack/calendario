@@ -176,6 +176,7 @@ summary:hover {
     margin: 20px;
     width: 100%;
     align-items: center;
+    gap: 10px;
 }
 
 .windowEvents__event{

@@ -1,35 +1,51 @@
-//Cuestion de los dias
-// for (let i = 0; i < month_Cheked.length; i++) {
-//     if (month_Cheked[i].checked == true) {
-//         for (let i = months[0].starts; i < months[0].days; i++) {
-//             table_data[i].textContent = counter
-//             counter += 1
-//         }
-
-//     }
-// }
-//Solo para ver el mes que esta seleccionado
-for (let i = 0; i < month_Cheked.length; i++) {
-    month_Cheked[i].addEventListener('click', () => {
-        counter = 1;
-        console.log(month_Cheked[i].id)
-        let index_month = month_Cheked[i].value;
 
 
-        for (let i = 0; i < month_Cheked.length; i++) {
-            if (month_Cheked[i].checked == true) {
-                for (let i = months[index_month].starts; i < months[index_month].days; i++) {
-                    table_data[i].textContent = counter
-                    counter += 1
-                }
+                                <div class="windowEvents__event">
+                        <h3 class="windowEvents__eventTitle">Pollos guatemaltecos</h3>
+                        <div class="windowEvents__eventdatedata">
+                            <div class="windowEvents__eventFecha">
+                                <span class="windowEvents__eventday">20</span>
+                                <span>/</span>
+                                <span class="windowEvents__eventmonth">09</span>
+                                <span>/</span>
+                                <span class="windowEvents__eventyear">26</span>
+                            </div>
+                            
+                            <span class="windowEvents__eventHora">9:00</span>
+                        </div>
 
-            }
-        }
-    })
+                    </div>
+
+                    function fw() {
+  if (months[0][year_seleccionado][mes_seleccionado].start_position >= 5) {
+    //fw its from 'five week'
+    const fw = document.createElement('tr')
+    fw.classList.add('calendary__week-row')
+    fw.classList.add('fw')
+
+    for (let i = 0; i < 7; i++) {
+      const fw_day = document.createElement('td')
+      fw_day.classList.add('calendary__date')
+      fw_day.classList.add('fw_day')
+      fw_day.textContent = "";
+
+      fw.appendChild(fw_day)
+    }
+
+    //Meter el five week en html
+    tbody.appendChild(fw);
+
+    //Creo que tiene sentido, cada vez se actualizan
+    day = document.querySelectorAll(".calendary__date");
+    table_data = tbody.querySelectorAll("td");
+    table_rows = tbody.querySelectorAll('tr')
+  }
 }
 
-// Dibujar Enero por ahora
-
-
-
-
+let contenedorEvento = document.querySelector('.windowEvents__event')
+let tituloEvento = document.querySelector('.windowEvents__eventTitle')
+let fechaContainer = document.querySelector('.windowEvents__eventFecha')
+let diaEvento = document.querySelector('.windowEvents__eventday')
+let mesEvento = document.querySelector('.windowEvents__eventmonth')
+let añoEvento = document.querySelector('.windowEvents__eventyear')
+let horaEvento = document.querySelector('.windowEvents__eventHora')
