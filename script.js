@@ -120,7 +120,7 @@ function seleccionarMMYYxFecha(MMYY, MMSYYS) {
   }
 }
 
-function crearEventoV(){
+function crearEventoV(numero){
   
   if(eventoMain.textContent == 'No hay eventos existentes'){
     eventoMain.textContent = ''
@@ -163,55 +163,8 @@ function crearEventoV(){
   eventoMain.appendChild(eventoContainer);
 
   let eventojuas = JSON.parse(
-    localStorage.getItem(`event${localStorage.length - 1}`),
+    localStorage.getItem(`event${numero}`),
   );
-  eventoTitulo.textContent = eventojuas.title;
-  eventoFechacontainer.textContent = `${eventojuas.day}/${eventojuas.month}/${eventojuas.year}`
-  eventoHora.textContent = (eventojuas.hour).slice(0,5);
-}
-
-function crearEventoReload(i){
-    if(eventoMain.textContent == 'No hay eventos existentes'){
-    eventoMain.textContent = ''
-  }
-
-  const eventoContainer = document.createElement("div");
-  eventoContainer.classList.add("windowEvents__event");
-
-  const eventoTitulo = document.createElement("h3");
-  eventoTitulo.classList.add("windowEvents__eventTitle");
-
-  const eventoDatacontainer = document.createElement("div");
-  eventoDatacontainer.classList.add("windowEvents__eventdatedata");
-
-  const eventoFechacontainer = document.createElement("div");
-  eventoFechacontainer.classList.add("windowEvents__eventFecha");
-
-  // const eventoDia = document.createElement("span");
-  // eventoDia.classList.add("windowEvents__eventday");
-
-  // const eventoMes = document.createElement("span");
-  // eventoMes.classList.add("windowEvents__eventmonth");
-
-  // const eventoAño = document.createElement("span");
-  // eventoAño.classList.add("windowEvents__eventyear");
-
-  const eventoHora = document.createElement("span");
-  eventoHora.classList.add("windowEvents__eventHora");
-
-  eventoContainer.appendChild(eventoTitulo);
-  eventoContainer.appendChild(eventoDatacontainer);
-
-  eventoDatacontainer.appendChild(eventoFechacontainer);
-  eventoDatacontainer.appendChild(eventoHora);
-
-  // eventoFechacontainer.appendChild(eventoDia);
-  // eventoFechacontainer.appendChild(eventoMes);
-  // eventoFechacontainer.appendChild(eventoAño);
-
-  eventoMain.appendChild(eventoContainer);
-
-  let eventojuas = JSON.parse(localStorage.getItem(`event${i}`));
   eventoTitulo.textContent = eventojuas.title;
   eventoFechacontainer.textContent = `${eventojuas.day}/${eventojuas.month}/${eventojuas.year}`
   eventoHora.textContent = (eventojuas.hour).slice(0,5);
@@ -221,7 +174,7 @@ let addel = [];
 
 if(localStorage.length != 0){
   for(let i = 0; i<localStorage.length; i++){
-    crearEventoReload(i)
+    crearEventoV(i)
   }
 }
 
@@ -330,5 +283,5 @@ formulario.addEventListener("submit", (form) => {
   //Cierra el menu
   menu.close();
   
-  crearEventoV();
+  crearEventoV(localStorage.length - 1);
 });
