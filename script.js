@@ -1,4 +1,5 @@
 import { months } from "./data_months.js";
+
 let hardware_date = new Date();
 
 // Elementos del calendario
@@ -11,10 +12,8 @@ let table_rows = tbody.querySelectorAll("tr");
 // Menú de agenda
 const menu = document.querySelector("#menuAgenda");
 const formulario = document.querySelector(".agenda__container");
-const btn_enviar = document.querySelector("#close");
 
 // Inputs de fecha del formulario
-const menuday = document.querySelector("#diasel");
 const menudayselect = document.querySelector("#daysel");
 const menumonth = document.querySelector("#monthsel");
 const menuyear = document.querySelector("#yearsel");
@@ -33,21 +32,15 @@ let year_seleccionado = hardware_date.getFullYear();
 
 //Datos de los eventos // Referencias o no se wey alchile hjjsjsjs
 let eventoMain = document.querySelector(".windowEvents__main");
+let contenedoraPicar = document.querySelectorAll('.windowEvents__event');
 
 //Funciones
 function draw_day() {
   let contador = 1;
-  for (
-    let i = months[0][year_seleccionado][mes_seleccionado].start_position;
-    i < months[0][year_seleccionado][mes_seleccionado].days;
-    i++
-  ) {
+  for (let i = months[0][year_seleccionado][mes_seleccionado].start_position; i < months[0][year_seleccionado][mes_seleccionado].days; i++) {
     table_data[i].textContent = contador;
     contador += 1;
-
-    let index =
-      i - months[0][year_seleccionado][mes_seleccionado].start_position + 1;
-
+    let index = i - months[0][year_seleccionado][mes_seleccionado].start_position + 1;
     addel[i] = () => {
       mostrarmodal(index);
     };
@@ -61,19 +54,15 @@ function fw() {
     const fw = document.createElement("tr");
     fw.classList.add("calendary__week-row");
     fw.classList.add("fw");
-
     for (let i = 0; i < 7; i++) {
       const fw_day = document.createElement("td");
       fw_day.classList.add("calendary__date");
       fw_day.classList.add("fw_day");
       fw_day.textContent = "";
-
       fw.appendChild(fw_day);
     }
-
     //Meter el five week en html
     tbody.appendChild(fw);
-
     //Creo que tiene sentido, cada vez se actualizan
     day = document.querySelectorAll(".calendary__date");
     table_data = tbody.querySelectorAll("td");
@@ -88,7 +77,6 @@ function clean() {
     day[i].removeEventListener("click", addel[i]);
     day[i].classList.remove("calendary__date--previous-month");
   }
-
   //Limpeza de fw en caso de que exista
   for (let i = 0; i < table_rows.length; i++) {
     if (table_rows[i].classList.contains("fw")) {
@@ -120,12 +108,10 @@ function seleccionarMMYYxFecha(MMYY, MMSYYS) {
   }
 }
 
-function crearEventoV(numero){
-  
-  if(eventoMain.textContent == 'No hay eventos existentes'){
+function crearEventoV(numero) {
+  if (eventoMain.textContent == 'No hay eventos existentes') {
     eventoMain.textContent = ''
   }
-
   const eventoContainer = document.createElement("div");
   eventoContainer.classList.add("windowEvents__event");
 
@@ -138,42 +124,48 @@ function crearEventoV(numero){
   const eventoFechacontainer = document.createElement("div");
   eventoFechacontainer.classList.add("windowEvents__eventFecha");
 
-  // const eventoDia = document.createElement("span");
-  // eventoDia.classList.add("windowEvents__eventday");
-
-  // const eventoMes = document.createElement("span");
-  // eventoMes.classList.add("windowEvents__eventmonth");
-
-  // const eventoAño = document.createElement("span");
-  // eventoAño.classList.add("windowEvents__eventyear");
-
   const eventoHora = document.createElement("span");
   eventoHora.classList.add("windowEvents__eventHora");
 
   eventoContainer.appendChild(eventoTitulo);
   eventoContainer.appendChild(eventoDatacontainer);
-
   eventoDatacontainer.appendChild(eventoFechacontainer);
   eventoDatacontainer.appendChild(eventoHora);
-
-  // eventoFechacontainer.appendChild(eventoDia);
-  // eventoFechacontainer.appendChild(eventoMes);
-  // eventoFechacontainer.appendChild(eventoAño);
-
   eventoMain.appendChild(eventoContainer);
 
-  let eventojuas = JSON.parse(
-    localStorage.getItem(`event${numero}`),
-  );
+  let eventojuas = JSON.parse(localStorage.getItem(`event${numero}`));
+
   eventoTitulo.textContent = eventojuas.title;
   eventoFechacontainer.textContent = `${eventojuas.day}/${eventojuas.month}/${eventojuas.year}`
-  eventoHora.textContent = (eventojuas.hour).slice(0,5);
+  eventoHora.textContent = (eventojuas.hour).slice(0, 5);
+
+  // contenedoraPicar = document.querySelectorAll('.windowEvents__event');
 }
 
-let addel = [];
+function deleteEvento() {
+  contenedoraPicar = document.querySelectorAll('.windowEvents__event');
+  for (let i = 0; i < contenedoraPicar.length; i++) {
+    contenedoraPicar[i].addEventListener('click', () => {
+      
+      console.log('Hizo Click a: ' + i)
+      for(let j = i; j<contenedoraPicar.length; j++){
+        if(j != contenedoraPicar.length-1){
+          localStorage.setItem(`event${j}`, localStorage.getItem(`event${j+1}`))
+        }
+        
+      }  
+      localStorage.removeItem(`event${localStorage.length-1}`)
 
-if(localStorage.length != 0){
-  for(let i = 0; i<localStorage.length; i++){
+    });
+  }
+}
+
+
+let addel = [];
+let hayListener = [];
+
+if (localStorage.length != 0) {
+  for (let i = 0; i < localStorage.length; i++) {
     crearEventoV(i)
   }
 }
@@ -197,23 +189,14 @@ for (let i = 0; i < year_Cheked.length; i++) {
         year_seleccionado = year_Cheked[i].value;
       }
     }
-
     //Limpieza para cada dia
     clean();
-
     //Escribir el Nombre del mes seleccionado
-    calendary_header.textContent =
-      months[0][year_seleccionado][mes_seleccionado].name +
-      " - " +
-      months[0][year_seleccionado][mes_seleccionado].data_year;
-
+    calendary_header.textContent = months[0][year_seleccionado][mes_seleccionado].name + " - " + months[0][year_seleccionado][mes_seleccionado].data_year;
     //Empezar a dibujar
-
     //Si el mes inicia desde el indice 5 en adelante creara una nueva semana
     fw();
-
     draw_day();
-
     previous_month();
   });
 }
@@ -223,39 +206,21 @@ for (let i = 0; i < month_Cheked.length; i++) {
   month_Cheked[i].addEventListener("input", () => {
     if (month_Cheked[i].checked == true) {
       mes_seleccionado = month_Cheked[i].value;
-
-      // for (let i = 0; i < year_Cheked.length; i++) {
-      //   if (year_Cheked[i].checked == true) {
-      //     year_seleccionado = year_Cheked[i].value
-      //   }
-      // }
-
       //Limpieza para cada dia
       clean();
-
       //Escribir el Nombre del mes seleccionado
-      calendary_header.textContent =
-        months[0][year_seleccionado][mes_seleccionado].name +
-        " - " +
-        months[0][year_seleccionado][mes_seleccionado].data_year;
-
+      calendary_header.textContent = months[0][year_seleccionado][mes_seleccionado].name + " - " + months[0][year_seleccionado][mes_seleccionado].data_year;
       //Empezar a dibujar
-
       //Si el mes inicia desde el indice 5 en adelante creara una nueva semana
       fw();
-
       draw_day();
-
       previous_month();
     }
   });
 }
 
 //Solo cuando se carga la Pagina
-calendary_header.textContent =
-  months[0][year_seleccionado][mes_seleccionado].name +
-  " - " +
-  months[0][year_seleccionado][mes_seleccionado].data_year;
+calendary_header.textContent = months[0][year_seleccionado][mes_seleccionado].name + " - " + months[0][year_seleccionado][mes_seleccionado].data_year;
 
 fw();
 
@@ -282,6 +247,8 @@ formulario.addEventListener("submit", (form) => {
 
   //Cierra el menu
   menu.close();
-  
+
   crearEventoV(localStorage.length - 1);
 });
+
+deleteEvento()
