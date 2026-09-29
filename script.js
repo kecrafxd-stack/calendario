@@ -138,14 +138,17 @@ function crearEventoV(numero) {
   eventoTitulo.textContent = eventojuas.title;
   eventoFechacontainer.textContent = `${eventojuas.day}/${eventojuas.month}/${eventojuas.year}`
   eventoHora.textContent = (eventojuas.hour).slice(0, 5);
-
-  // contenedoraPicar = document.querySelectorAll('.windowEvents__event');
+  
 }
 
 function deleteEvento() {
+  //Actualiza variable
   contenedoraPicar = document.querySelectorAll('.windowEvents__event');
+
   for (let i = 0; i < contenedoraPicar.length; i++) {
-    contenedoraPicar[i].addEventListener('click', () => {
+    contenedoraPicar[i].addEventListener('contextmenu', (e) => {
+
+      e.preventDefault(); 
       
       console.log('Hizo Click a: ' + i)
       for(let j = i; j<contenedoraPicar.length; j++){
@@ -162,7 +165,6 @@ function deleteEvento() {
 
 
 let addel = [];
-let hayListener = [];
 
 if (localStorage.length != 0) {
   for (let i = 0; i < localStorage.length; i++) {
@@ -249,6 +251,8 @@ formulario.addEventListener("submit", (form) => {
   menu.close();
 
   crearEventoV(localStorage.length - 1);
+
+  deleteEvento()
 });
 
-deleteEvento()
+deleteEvento();
