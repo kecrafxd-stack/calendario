@@ -1,0 +1,20 @@
+function deleteEvento() {
+  //Actualiza variable
+  evento = document.querySelectorAll('.windowEvents__event');
+
+  for (let i = 0; i < evento.length; i++) {
+    evento[i].addEventListener('contextmenu', (e) => {
+
+      e.preventDefault(); 
+      
+      console.log('Hizo Click a: ' + i)
+      for(let j = i; j<evento.length; j++){
+        if(j != evento.length-1){
+          localStorage.setItem(`event${j}`, localStorage.getItem(`event${j+1}`))
+        }
+      }  
+      localStorage.removeItem(`event${localStorage.length-1}`)
+
+    });
+  }
+}

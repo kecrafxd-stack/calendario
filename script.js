@@ -32,7 +32,11 @@ let year_seleccionado = hardware_date.getFullYear();
 
 //Datos de los eventos // Referencias o no se wey alchile hjjsjsjs
 let eventoMain = document.querySelector(".windowEvents__main");
-let contenedoraPicar = document.querySelectorAll('.windowEvents__event');
+let evento = document.querySelectorAll('.windowEvents__event');
+
+
+let addel = [];
+let eventListeners = [];
 
 //Funciones
 function draw_day() {
@@ -139,32 +143,32 @@ function crearEventoV(numero) {
   eventoFechacontainer.textContent = `${eventojuas.day}/${eventojuas.month}/${eventojuas.year}`
   eventoHora.textContent = (eventojuas.hour).slice(0, 5);
   
-}
+  evento = document.querySelectorAll('.windowEvents__event');
 
-function deleteEvento() {
-  //Actualiza variable
-  contenedoraPicar = document.querySelectorAll('.windowEvents__event');
+  for(let i = 0; i < evento.length; i++){
+    eventListeners[i] = (e) => {
+      e.preventDefault()
+      deleteEvento(i);
 
-  for (let i = 0; i < contenedoraPicar.length; i++) {
-    contenedoraPicar[i].addEventListener('contextmenu', (e) => {
+      console.log(i)
+    }
 
-      e.preventDefault(); 
-      
-      console.log('Hizo Click a: ' + i)
-      for(let j = i; j<contenedoraPicar.length; j++){
-        if(j != contenedoraPicar.length-1){
-          localStorage.setItem(`event${j}`, localStorage.getItem(`event${j+1}`))
-        }
-        
-      }  
-      localStorage.removeItem(`event${localStorage.length-1}`)
-
-    });
+    evento[i].addEventListener('contextmenu', eventListeners[i])
   }
 }
 
+function deleteEvento(i) {
 
-let addel = [];
+
+      for(let j = i; j<evento.length; j++){
+        if(j != evento.length-1){
+          localStorage.setItem(`event${j}`, localStorage.getItem(`event${j+1}`))
+        }
+      }  
+      localStorage.removeItem(`event${localStorage.length-1}`)
+
+  }
+
 
 if (localStorage.length != 0) {
   for (let i = 0; i < localStorage.length; i++) {
@@ -251,8 +255,4 @@ formulario.addEventListener("submit", (form) => {
   menu.close();
 
   crearEventoV(localStorage.length - 1);
-
-  deleteEvento()
 });
-
-deleteEvento();
