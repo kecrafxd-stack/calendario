@@ -162,22 +162,21 @@ function addListener() {
 }
 
 function deleteEvento(i) {
+
 console.log(`Indice i: ${i}`)
-  for (let j = i; j < evento.length; j++) {
+  for (let j = i; j < localStorage.length; j++) {
       if (j != evento.length - 1) {
         localStorage.setItem(`event${j}`, localStorage.getItem(`event${j + 1}`))
       }
   }
   localStorage.removeItem(`event${localStorage.length - 1}`)
   evento[i].remove()
-  eventListeners.splice(1, [i])
+  eventListeners.pop()
+  
+  
+  
   for(let i = 0; i<eventListeners.length; i++){
     console.log(`Indice de funcion: ${i}\n Funcion: ${eventListeners[i]}`)
-  }
-
-  console.log(localStorage.length)
-  if (localStorage.length == 0) {
-    eventoMain.textContent == 'No hay eventos existentes'
   }
 }
 
