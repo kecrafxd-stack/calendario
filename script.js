@@ -142,32 +142,44 @@ function crearEventoV(numero) {
   eventoTitulo.textContent = eventojuas.title;
   eventoFechacontainer.textContent = `${eventojuas.day}/${eventojuas.month}/${eventojuas.year}`
   eventoHora.textContent = (eventojuas.hour).slice(0, 5);
-  
+
   evento = document.querySelectorAll('.windowEvents__event');
 
-  for(let i = 0; i < evento.length; i++){
-    eventListeners[i] = (e) => {
-      e.preventDefault()
-      deleteEvento(i);
+  addListener()
+}
 
-      console.log(i)
+function addListener() {
+  for (let i = 0; i < evento.length; i++) {
+    if (typeof eventListeners[i] !== 'function') {
+      eventListeners[i] = (e) => {
+        e.preventDefault()
+        deleteEvento(i);
+      }
+
+      evento[i].addEventListener('contextmenu', eventListeners[i])
     }
-
-    evento[i].addEventListener('contextmenu', eventListeners[i])
   }
 }
 
 function deleteEvento(i) {
-
-
-      for(let j = i; j<evento.length; j++){
-        if(j != evento.length-1){
-          localStorage.setItem(`event${j}`, localStorage.getItem(`event${j+1}`))
-        }
-      }  
-      localStorage.removeItem(`event${localStorage.length-1}`)
-
+console.log(`Indice i: ${i}`)
+  for (let j = i; j < evento.length; j++) {
+      if (j != evento.length - 1) {
+        localStorage.setItem(`event${j}`, localStorage.getItem(`event${j + 1}`))
+      }
   }
+  localStorage.removeItem(`event${localStorage.length - 1}`)
+  evento[i].remove()
+  eventListeners.splice(1, [i])
+  for(let i = 0; i<eventListeners.length; i++){
+    console.log(`Indice de funcion: ${i}\n Funcion: ${eventListeners[i]}`)
+  }
+
+  console.log(localStorage.length)
+  if (localStorage.length == 0) {
+    eventoMain.textContent == 'No hay eventos existentes'
+  }
+}
 
 
 if (localStorage.length != 0) {
